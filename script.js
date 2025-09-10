@@ -53,3 +53,48 @@ async function handleFormSubmit(event) {
         console.error('Search error:', error);
     }
 }
+// Display recipes in the UI
+function displayRecipes(recipes) {
+    if (!recipeListContainer) return;
+    
+    recipeListContainer.innerHTML = '';
+    
+    if (!recipes || recipes.length === 0) {
+        showMessage('No recipes found. Try searching for something else!');
+        return;
+    }
+    
+    recipes.forEach((recipe, index) => {
+        const listItem = createRecipeCard(recipe, index);
+        recipeListContainer.appendChild(listItem);
+    });
+}
+
+// Create individual recipe card
+function createRecipeCard(recipe, index) {
+    const listItem = document.createElement('li');
+    const recipeImage = document.createElement('img');
+    const recipeTitle = document.createElement('span');
+    
+    // Set image properties
+    recipeImage.src = recipe.strMealThumb;
+    recipeImage.alt = recipe.strMeal;
+    recipeImage.loading = 'lazy';
+    
+    // Set title
+    recipeTitle.textContent = recipe.strMeal;
+    recipeTitle.className = 'recipe-title';
+    
+    // Add click event to show recipe details
+    listItem.addEventListener('click', () => showRecipeDetails(recipe));
+    
+    // Append elements
+    listItem.appendChild(recipeImage);
+    listItem.appendChild(recipeTitle);
+    
+    // Add classes
+    listItem.className = 'recipe-card';
+    listItem.setAttribute('data-recipe-id', recipe.idMeal);
+    
+    return listItem;
+}
