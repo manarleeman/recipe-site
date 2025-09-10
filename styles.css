@@ -76,12 +76,12 @@ input[type="search"] {
 
 input[type="search"]:focus {
     outline: none;
-    border-color: #05314e;
-    box-shadow: 0 0 0 3px rgba(13, 30, 42, 0.1);
+    border-color: #b0cadb;
+    box-shadow: 0 0 0 3px rgba(169, 210, 240, 0.1);
 }
 
 button {
-    background: linear-gradient(135deg, #020c38 0%, #0e133d 100%);
+    background: linear-gradient(135deg, #3a4a93 0%, #0e133d 100%);
     color: white;
     width: 28%;
     height: 50px;
@@ -111,7 +111,7 @@ a {
 }
 
 a:hover {
-    color: #3498db;
+    color: #031724;
 }
 /* Page sections */
 .homepage {
@@ -142,7 +142,7 @@ a:hover {
 
 /* Header section */
 .header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #1c2c6c 0%, #000000 100%);
     color: white;
     padding: 40px 20px;
     border-radius: 20px;
