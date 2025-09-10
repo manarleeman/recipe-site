@@ -44,3 +44,72 @@ p {
     line-height: 1.7;
     color: #555;
 }
+/* Remove default list styles */
+ul {
+    list-style: none;
+}
+
+li {
+    list-style-type: none;
+}
+
+/* Images */
+img {
+    width: 100%;
+    max-width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* Form elements */
+input[type="search"] {
+    width: 70%;
+    height: 50px;
+    padding: 0 20px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    font-size: 1rem;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+input[type="search"]:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    width: 28%;
+    height: 50px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Links */
+a {
+    text-decoration: none;
+    color: inherit;
+    font-size: 1.4rem;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #3498db;
+}
