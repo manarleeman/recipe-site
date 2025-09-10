@@ -323,3 +323,67 @@ a:hover {
     background: #ffebee;
     color: #d32f2f;
 }
+/* Responsive design */
+@media (min-width: 600px) {
+    body {
+        padding: 32px 24px;
+    }
+    
+    h1 {
+        font-size: 3.2rem;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    p {
+        font-size: 1.1rem;
+    }
+    
+    input[type="search"] {
+        width: 75%;
+        height: 55px;
+    }
+    
+    button {
+        width: 22%;
+        height: 55px;
+    }
+    
+    .recipe-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+    }
+    
+    .recipe-card img {
+        height: 220px;
+    }
+    
+    .recipe-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+    
+    .recipe-image-container img {
+        height: 450px;
+    }
+}
+
+@media (min-width: 900px) {
+    .recipe-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .search-form {
+        max-width: 600px;
+    }
+    
+    input[type="search"] {
+        width: 78%;
+    }
+    
+    button {
+        width: 20%;
+    }
+}
