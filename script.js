@@ -20,3 +20,36 @@ function initializeApp() {
         backButton.addEventListener('click', showHomepage);
     }
 }   
+// Navigation functions
+function showHomepage() {
+    homepageSection.classList.remove('hidden');
+    recipePageSection.classList.add('hidden');
+    document.title = 'Ocean Of Recipes';
+}
+
+function showRecipePage() {
+    homepageSection.classList.add('hidden');
+    recipePageSection.classList.remove('hidden');
+}
+// Form submission handler
+async function handleFormSubmit(event) {
+    event.preventDefault();
+    
+    const formData = new FormData(event.currentTarget);
+    const searchTerm = formData.get('meal');
+    
+    if (!searchTerm.trim()) {
+        showMessage('Please enter a recipe name to search.');
+        return;
+    }
+    
+    try {
+        showLoadingMessage();
+        const recipes = await fetchRecipeData(searchTerm);
+        currentRecipes = recipes;
+        displayRecipes(recipes);
+    } catch (error) {
+        showErrorMessage('Failed to fetch recipes. Please try again.');
+        console.error('Search error:', error);
+    }
+}
