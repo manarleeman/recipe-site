@@ -23,6 +23,43 @@
                 <h2>Discover Recipes</h2>
                 <ul class="recipe-list" id="recipe-list"></ul>
             </section>
+            <!-- Recipe Details Section -->
+    <section class="recipe-page hidden" id="recipe-page">
+        <nav class="back-nav">
+            <button id="back-btn" class="back-button">← Back to Search</button>
+        </nav>
+        
+        <main class="recipe-details">
+            <header>
+                <h1 id="recipe-title"></h1>
+            </header>
+            
+            <div class="recipe-content">
+                <div class="recipe-image-container">
+                    <img id="recipe-image" alt="Recipe image">
+                </div>
+                
+                <div class="recipe-ingredients">
+                    <h2>Required Ingredients</h2>
+                    <ul class="ingredient-list" id="ingredient-list"></ul>
+                </div>
+            </div>
+            
+            <section class="instructions-section">
+                <h2>Cooking Instructions</h2>
+                <p id="recipe-instructions" class="instruction-text"></p>
+            </section>
+            
+            <div class="video-section">
+                <button class="youtube-btn">
+                    <a href="#" id="video-link" target="_blank" rel="noopener">
+                        🎥 Watch Video Tutorial
+                    </a>
+                </button>
+            </div>
+        </main>
+    </section>
+
         </main>
     </section>
 </body>
