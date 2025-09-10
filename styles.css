@@ -239,3 +239,87 @@ a:hover {
     height: 400px;
     border-radius: 16px;
 }
+/* Ingredients */
+.recipe-ingredients h2 {
+    margin-top: 0;
+}
+
+.ingredient-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ingredient-item {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 12px 16px;
+    position: relative;
+    padding-left: 32px;
+}
+
+.ingredient-item::before {
+    content: "•";
+    color: #667eea;
+    font-weight: bold;
+    position: absolute;
+    left: 16px;
+    font-size: 1.2rem;
+}
+
+/* Instructions */
+.instructions-section {
+    margin: 32px 0;
+}
+
+.instruction-text {
+    background: #f8f9fa;
+    padding: 24px;
+    border-radius: 12px;
+    border-left: 4px solid #667eea;
+}
+
+/* Video section */
+.video-section {
+    text-align: center;
+    margin-top: 32px;
+}
+
+.youtube-btn {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+    padding: 16px 32px;
+    border-radius: 30px;
+    display: inline-block;
+    width: auto;
+    height: auto;
+}
+
+.youtube-btn a {
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+/* Message states */
+.message, .loading, .error-message, .no-ingredients {
+    text-align: center;
+    padding: 32px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+}
+
+.message {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.loading {
+    background: #fff3e0;
+    color: #f57c00;
+}
+
+.error-message {
+    background: #ffebee;
+    color: #d32f2f;
+}
