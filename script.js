@@ -209,3 +209,82 @@ function updateIngredientsList(recipe) {
         ingredientsContainer.appendChild(listItem);
     });
 }
+// Extract and format ingredients with measurements
+function extractIngredients(recipe) {
+    const ingredientsList = [];
+    
+    // TheMealDB API provides up to 20 ingredients
+    for (let index = 1; index <= 20; index++) {
+        const ingredient = recipe[`strIngredient${index}`];
+        const measurement = recipe[`strMeasure${index}`];
+        
+        if (ingredient && ingredient.trim() !== '') {
+            const formattedIngredient = measurement && measurement.trim() !== '' 
+                ? `${measurement.trim()} ${ingredient.trim()}`
+                : ingredient.trim();
+            
+            ingredientsList.push(formattedIngredient);
+        }
+    }
+    
+    return ingredientsList;
+}
+
+// Update cooking instructions
+function updateInstructions(instructions) {
+    const instructionsElement = document.getElementById('recipe-instructions');
+    if (instructionsElement) {
+        instructionsElement.textContent = instructions || 'No instructions available.';
+    }
+}
+
+// Update YouTube video link
+function updateVideoLink(youtubeUrl) {
+    const videoLinkElement = document.getElementById('video-link');
+    if (videoLinkElement) {
+        if (youtubeUrl && youtubeUrl.trim() !== '') {
+            videoLinkElement.href = youtubeUrl;
+            videoLinkElement.style.pointerEvents = 'auto';
+            videoLinkElement.style.opacity = '1';
+            videoLinkElement.textContent = '🎥 Watch Video Tutorial';
+        } else {
+            videoLinkElement.href = '#';
+            videoLinkElement.style.pointerEvents = 'none';
+            videoLinkElement.style.opacity = '0.5';
+            videoLinkElement.textContent = '🎥 No Video Available';
+        }
+    }
+}
+
+// Utility functions for messages
+function showMessage(message) {
+    if (recipeListContainer) {
+        recipeListContainer.innerHTML = `<li class="message">${message}</li>`;
+    }
+}
+
+function showLoadingMessage() {
+    if (recipeListContainer) {
+        recipeListContainer.innerHTML = '<li class="loading">Searching for delicious recipes...</li>';
+    }
+}
+
+function showErrorMessage(message) {
+    if (recipeListContainer) {
+        recipeListContainer.innerHTML = `<li class="error-message">${message}</li>`;
+    }
+}
+
+function displayRecipeError(message) {
+    const titleElement = document.getElementById('recipe-title');
+    if (titleElement) {
+        titleElement.textContent = 'Error Loading Recipe';
+        titleElement.style.color = '#e74c3c';
+    }
+    
+    const instructionsElement = document.getElementById('recipe-instructions');
+    if (instructionsElement) {
+        instructionsElement.textContent = message;
+        instructionsElement.style.color = '#e74c3c';
+    }
+}
