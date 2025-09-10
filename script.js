@@ -98,3 +98,114 @@ function createRecipeCard(recipe, index) {
     
     return listItem;
 }
+// Show recipe details
+async function showRecipeDetails(recipe) {
+    try {
+        showRecipePage();
+        
+        // Show loading state
+        updateRecipeTitle('Loading recipe...');
+        
+        // Fetch full recipe details
+        const fullRecipe = await fetchRecipeDetails(recipe.idMeal);
+        
+        if (fullRecipe) {
+            populateRecipeDetails(fullRecipe);
+        } else {
+            displayRecipeError('Recipe not found. Please try another recipe.');
+        }
+    } catch (error) {
+        console.error('Recipe details error:', error);
+        displayRecipeError('Failed to load recipe details. Please try again.');
+    }
+}
+
+// Fetch recipe data from API
+async function fetchRecipeData(searchTerm) {
+    const apiUrl = `https://www.themealdb.com/api/json/v1/1/search.php?s=${encodeURIComponent(searchTerm)}`;
+    
+    try {
+        const response = await fetch(apiUrl);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        return data.meals || [];
+        
+    } catch (error) {
+        console.error('API fetch error:', error);
+        throw new Error('Unable to fetch recipe data');
+    }
+}
+
+// Fetch detailed recipe information
+async function fetchRecipeDetails(id) {
+    const apiEndpoint = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
+    
+    try {
+        const response = await fetch(apiEndpoint);
+        
+        if (!response.ok) {
+            throw new Error(`API Error: ${response.status}`);
+        }
+        
+        const responseData = await response.json();
+        return responseData.meals ? responseData.meals[0] : null;
+        
+    } catch (error) {
+        console.error('Error fetching recipe details:', error);
+        throw new Error('Unable to load recipe information');
+    }
+}
+// Populate all recipe details in the UI
+function populateRecipeDetails(recipe) {
+    updateRecipeTitle(recipe.strMeal);
+    updateRecipeImage(recipe.strMealThumb, recipe.strMeal);
+    updateIngredientsList(recipe);
+    updateInstructions(recipe.strInstructions);
+    updateVideoLink(recipe.strYoutube);
+}
+
+// Update recipe title
+function updateRecipeTitle(title) {
+    const titleElement = document.getElementById('recipe-title');
+    if (titleElement) {
+        titleElement.textContent = title;
+        document.title = `${title} - Ocean Of Recipes`;
+    }
+}
+
+// Update recipe image
+function updateRecipeImage(imageSrc, altText) {
+    const imageElement = document.getElementById('recipe-image');
+    if (imageElement) {
+        imageElement.src = imageSrc;
+        imageElement.alt = altText;
+    }
+}
+
+// Update ingredients list with measurements
+function updateIngredientsList(recipe) {
+    const ingredientsContainer = document.getElementById('ingredient-list');
+    if (!ingredientsContainer) return;
+    
+    const ingredients = extractIngredients(recipe);
+    ingredientsContainer.innerHTML = '';
+    
+    if (ingredients.length === 0) {
+        const noIngredientsItem = document.createElement('li');
+        noIngredientsItem.textContent = 'No ingredients available';
+        noIngredientsItem.className = 'no-ingredients';
+        ingredientsContainer.appendChild(noIngredientsItem);
+        return;
+    }
+    
+    ingredients.forEach((ingredient, index) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = ingredient;
+        listItem.className = 'ingredient-item';
+        ingredientsContainer.appendChild(listItem);
+    });
+}
